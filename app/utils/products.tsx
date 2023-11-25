@@ -77,7 +77,8 @@ export const products = [
         color: "Black",
         colorCode: "#000000",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1686386605041-iphone12-black.jpg?alt=media&token=32abf316-ddf6-4870-9e1e-a7c884b750d6",
+        "https://chinhnhan.vn/uploads/product/smart-phone-tablet/Apple/MGDX3VN.jpg",
+        
       },
       {
         color: "Blue",

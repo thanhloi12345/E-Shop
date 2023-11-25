@@ -12,6 +12,11 @@ const nextConfig = {
                 hostname: 'lh3.googleusercontent.com',
                 pathname: '**',
             },
+            {
+                protocol: 'https',
+                hostname: 'chinhnhan.vn',
+                pathname: '**',
+            },
         ]
     },
     reactStrictMode: false

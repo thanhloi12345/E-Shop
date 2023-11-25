@@ -12,19 +12,19 @@ export const product = {
         color: "Black",
         colorCode: "#000000",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1686386605041-iphone12-black.jpg?alt=media&token=32abf316-ddf6-4870-9e1e-a7c884b750d6",
+          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fchinhnhan.vn%2Fdien-thoai-apple-iphone-12-mini-64gb-black&psig=AOvVaw06ww_iD1iY8-CJM2fR4ubL&ust=1700895287628000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCLD3wfCG3IIDFQAAAAAdAAAAABAI",
       },
       {
         color: "Blue",
         colorCode: " #0000FF",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1686386607274-iphone12-blue.jpg?alt=media&token=e83a9b13-86b6-4518-9f1e-8ddef12ba9a2",
+          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fchinhnhan.vn%2Fdien-thoai-apple-iphone-12-mini-64gb-black&psig=AOvVaw06ww_iD1iY8-CJM2fR4ubL&ust=1700895287628000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCLD3wfCG3IIDFQAAAAAdAAAAABAI",
       },
       {
         color: "Red",
         colorCode: "#FF0000",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1686386608652-iphone12-red.jpg?alt=media&token=603a9e86-5b8c-4f8d-b61c-c1c77e60e954",
+          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fchinhnhan.vn%2Fdien-thoai-apple-iphone-12-mini-64gb-black&psig=AOvVaw06ww_iD1iY8-CJM2fR4ubL&ust=1700895287628000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCLD3wfCG3IIDFQAAAAAdAAAAABAI",
       },
     ],
     reviews: [
