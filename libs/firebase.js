@@ -10,11 +10,10 @@ const firebaseConfig = {
   projectId: "e-shop-vid-d8653",
   storageBucket: "e-shop-vid-d8653.appspot.com",
   messagingSenderId: "815155651770",
-  appId: "1:815155651770:web:8a2b873bb20dc8ae248e83"
+  appId: "1:815155651770:web:8a2b873bb20dc8ae248e83",
 };
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-
 
 export default firebaseApp;
