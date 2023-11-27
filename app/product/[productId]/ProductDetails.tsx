@@ -54,6 +54,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         SetIsProductInCart(true);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartProducts]);
   const productRating =
     product.reviews.length !== 0
@@ -68,6 +69,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         return { ...prev, seletedImg: value };
       });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [cartProduct.seletedImg]
   );
   const handleQtyIncrease = useCallback(() => {

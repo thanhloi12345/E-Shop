@@ -1,23 +1,28 @@
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import getOrders from "@/actions/getOrders";
 import Container from "@/app/components/Container";
-import ManageOrdersClient from "./ManageOrdersClient";
+import OrdersClient from "./OrderClient";
 import NullData from "@/app/components/NullData";
+import getOrdersByUserId from "@/actions/getOrdersByUserId";
 
-const ManageOrders=async()=>{
+const Orders=async()=>{
 
-    const orders=await getOrders()
     const currentUser=await getCurrentUser();
 
-    if(!currentUser || currentUser.role !== 'ADMIN'){
+    if(!currentUser){
         return <NullData title="Oops! Access denied"/>
+    }
+    const orders=await getOrdersByUserId(currentUser.id)
+
+    if(!orders){
+        return <NullData title="No order yet..."/>
     }
 
     return <div className="pt-8">
         <Container>
-            <ManageOrdersClient orders={orders}/>
+            <OrdersClient orders={orders}/>
         </Container>
         </div>;
 };
 
-export default ManageOrders;
+export default Orders;
