@@ -2,3 +2,13 @@ env: standard
 runtime: nodejs20
 instance_class: F1
 service: default
+env_variables:
+  DATABASE_URL: "mongodb+srv://thanhloitiger:thanhloi12345@cluster0.khxg4ck.mongodb.net/e-shop"
+  NEXTAUTH_SECRET: "iu6fvoYQH1dvzP+r33kvUFZ2FLLDm713zj+GwDVKcQw="
+  GOOGLE_CLIENT_ID: "455142370552-84pr3sugpckr9k2nut28cblvgpimmr8b.apps.googleusercontent.com"
+  GOOGLE_CLIENT_SECRET: "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"
+  SRIPE_SECRET_KEY: "sk_test_51OFGXkF2SgA5R5WfUltoRPhQeeXwACAAqKNvkCzCaYUp5mGwTDkCXqbtxiGzcJ7kXrTYzoOnNWeDpzVbGX2JFi2Q00myxyNLA1"
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: "pk_test_51OFGXkF2SgA5R5WfT1ZuLqVBFmPyiE3dRj9Ft0JHQdf39asAWQStCZeuP76duJS1vg2jpiHeFUIt3h5VViabGlDO00M8hzoz5r"
+  STRIPE_WEBHOOK_SECRET: "whsec_73b8aba37fa192ed4806899c8ed4b1d5c05aed75df075fdddb04de251bcd0dbd"
+  NEXTAUTH_URL: "https://dung-loi-project-2.df.r.appspot.com/"
+  NODE_ENV: "production"
