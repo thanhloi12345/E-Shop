@@ -17,9 +17,11 @@ const nextConfig = {
                 hostname: 'chinhnhan.vn',
                 pathname: '**',
             },
-        ]
+        ],
+        unoptimized: true,
     },
-    reactStrictMode: false
+    reactStrictMode: false,
+    output: 'standalone'
 }
 
 module.exports = nextConfig
