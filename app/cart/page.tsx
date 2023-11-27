@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/actions/getCurrentUser";
 import Container from "../components/Container";
 import CartClient from "./CartClient";
 import { SafeUser } from "@/types";
-
+export const dynamic = "force-dynamic";
 const Cart = async () => {
   const currentUser = await getCurrentUser();
   return (
