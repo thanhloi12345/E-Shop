@@ -54,7 +54,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         SetIsProductInCart(true);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartProducts]);
   const productRating =
     product.reviews.length !== 0
@@ -110,7 +110,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           {product.inStock ? "In stock" : "Out of stock"}
         </div>
         <Horizontal />
-        {isProductInCart ? (
+        {isProductInCart || !product.inStock ? (
           <>
             <p className="mb-2 text-slate-500 flex items-center gap-1">
               <MdCheckCircle size={20} className="text-teal-400" />
