@@ -22,7 +22,7 @@ const Avatar: React.FC<AvartarProps> = ({ src }) => {
     );
   }
 
-  return <BsPersonCircle size={24} />;
+  return <BsPersonCircle size={24} color="#0067ed" />;
 };
 
 export default Avatar;

@@ -6,6 +6,7 @@ import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import Categories from "./Categories";
 import SearchBar from "./SearchBar";
+import Image from "next/image";
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 const NavBar = async () => {
   const currentUser = await getCurrentUser();
@@ -15,7 +16,7 @@ const NavBar = async () => {
         sticky
         top-0
         w-full
-        bg-slate-200
+        bg-white
         z-30
         shadow-sm
         "
@@ -33,11 +34,20 @@ const NavBar = async () => {
           >
             <Link
               href={`/`}
-              className={`${redressed.className} font-bold text-2xl`}
+              className={`${redressed.className} font-bold text-2xl flex items-center justify-center gap-2`}
             >
-              Smart Shop
+              <div className="relative h-12 w-12">
+                <Image
+                  src="/logo-thinkpro.svg"
+                  fill
+                  alt="Banner image"
+                  className="object-contain"
+                />
+              </div>
             </Link>
-            <div className="hidden md:block"><SearchBar/></div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
               <UserMenu currentUser={currentUser} />
@@ -45,7 +55,7 @@ const NavBar = async () => {
           </div>
         </Container>
       </div>
-      <Categories/>
+      <Categories />
     </div>
   );
 };

@@ -77,7 +77,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
           signIn("google");
         }}
       />
-      <hr className="bg-slate-300 w-full h-px" />
+      <hr className="bg-[#0067ed] w-full h-px" />
       <Input
         id="name"
         lable="Name"

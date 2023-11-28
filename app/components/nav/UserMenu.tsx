@@ -23,10 +23,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       <div className="relative z-30">
         <div
           onClick={toggleOpen}
-          className="p-2 border-[1px] border-slate-400 flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transit text-slate-700"
+          className="p-2 border-[1px] border-[#0067ed] flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transit text-slate-700"
         >
           <Avatar src={currentUser?.image} />
-          <AiFillCaretDown />
+          <AiFillCaretDown color="#0067ed" />
         </div>
         {isOpen && (
           <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer">
