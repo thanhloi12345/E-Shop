@@ -15,6 +15,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import firebaseApp from "@/libs/firebase";
 import {
+  deleteObject,
   getDownloadURL,
   getStorage,
   ref,
@@ -22,6 +23,7 @@ import {
 } from "firebase/storage";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Product } from "@prisma/client";
 
 export type ImageType = {
   color: string;
@@ -34,7 +36,7 @@ export type UploadedImageType = {
   image: string;
 };
 
-const AddProductForm = () => {
+const AddProductForm = ({ product, id }: { product: Product; id?: string }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[] | null>();
@@ -49,13 +51,13 @@ const AddProductForm = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
-      description: "",
-      brand: "",
-      category: "",
-      inStock: false,
+      name: product.name,
+      description: product.description,
+      brand: product.brand,
+      category: product.category,
+      inStock: product.inStock,
       images: [],
-      price: "",
+      price: product.price,
     },
   });
 
@@ -63,7 +65,7 @@ const AddProductForm = () => {
     setCustomValue("images", images);
   }, [images]);
   useEffect(() => {
-    if (isProductCreated) {
+    if (!isProductCreated) {
       reset();
       setImages(null);
       setIsProductCreated(false);
@@ -76,25 +78,33 @@ const AddProductForm = () => {
     //save product to mongodb
 
     setIsLoading(true);
-    let uploadedImages: UploadedImageType[] = [];
+    let uploadedImages: UploadedImageType[] = [...product.images];
+    console.log(uploadedImages);
 
-    if (!data.category) {
-      setIsLoading(false);
-      return toast.error("Category is not selected");
-    }
+    // if (!data.category) {
+    //   setIsLoading(false);
+    //   return toast.error("Category is not selected");
+    // }
 
-    if (!data.images || data.images.length === 0) {
-      setIsLoading(false);
-      return toast.error("No selected image!");
-    }
+    // if (!data.images || data.images.length === 0) {
+    //   setIsLoading(false);
+    //   return toast.error("No selected image!");
+    // }
 
     const handleImageUploads = async () => {
-      toast("Creating product, please wait..");
+      toast("Updating product, please wait..");
       try {
         for (const item of data.images) {
           if (item.image) {
             const fileName = new Date().getTime() + "-" + item.image.name;
             const storage = getStorage(firebaseApp);
+            const deleteImage = uploadedImages.findIndex(
+              (image) => image.color == item.color
+            );
+            if (deleteImage >= 0) {
+              const imageRef = ref(storage, uploadedImages[deleteImage].image);
+              await deleteObject(imageRef);
+            }
             const storageRef = ref(storage, `products/${fileName}`);
             const uploadTask = uploadBytesResumable(storageRef, item.image);
 
@@ -121,10 +131,14 @@ const AddProductForm = () => {
                 () => {
                   getDownloadURL(uploadTask.snapshot.ref)
                     .then((downloadURL) => {
-                      uploadedImages.push({
-                        ...item,
-                        image: downloadURL,
-                      });
+                      if (deleteImage >= 0)
+                        uploadedImages[deleteImage].image = downloadURL;
+                      else {
+                        uploadedImages.push({
+                          ...item,
+                          image: downloadURL,
+                        });
+                      }
                       console.log("File available at", downloadURL);
                       resolve();
                     })
@@ -148,11 +162,11 @@ const AddProductForm = () => {
     const productData = { ...data, images: uploadedImages };
 
     axios
-      .post("/api/product", productData)
+      .patch(`/api/product`, { id, productData })
       .then(() => {
-        toast.success("Product created");
+        toast.success("Product updated");
         setIsProductCreated(true);
-        router.refresh();
+        router.push("/admin/manage-products");
       })
       .catch((error) => {
         toast.error("Something went wrong when saving product to db");
@@ -193,7 +207,7 @@ const AddProductForm = () => {
   }, []);
   return (
     <>
-      <Heading title="Add a Product" center />
+      <Heading title="Update a Product" center />
       <Input
         id="name"
         lable="Name"
@@ -275,14 +289,14 @@ const AddProductForm = () => {
                 item={item}
                 addImageToState={addImageToState}
                 removeImageFromState={removeImageFromState}
-                isProductCreated={isProductCreated}
+                isProductCreated={false}
               />
             );
           })}
         </div>
       </div>
       <Button
-        lable={isLoading ? "Loading..." : "Add Product"}
+        lable={isLoading ? "Loading..." : "Update Product"}
         onClick={handleSubmit(onSubmit)}
       />
     </>

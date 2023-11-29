@@ -91,7 +91,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="flex justify-start gap-4 w-full">
+          <div className="flex justify-between gap-4 w-full">
             <ActionBtn
               icon={MdCached}
               onClick={() => {
@@ -102,6 +102,12 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
               icon={MdDelete}
               onClick={() => {
                 handleDelete(params.row.id, params.row.inStock);
+              }}
+            />
+            <ActionBtn
+              icon={MdRemoveRedEye}
+              onClick={() => {
+                router.push(`manage-products/${params.row.id}`);
               }}
             />
           </div>

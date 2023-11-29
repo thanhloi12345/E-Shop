@@ -36,7 +36,7 @@ const SearchBar = () => {
   return (
     <div className="flex items-center">
       <input
-        {...register(" searchTerm")}
+        {...register("searchTerm")}
         autoComplete="on"
         type="text"
         placeholder="Explore Smart Shop"
