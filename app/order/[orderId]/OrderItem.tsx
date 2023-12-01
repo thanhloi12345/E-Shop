@@ -27,7 +27,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
       <div className="justify-self-center">{formatPrice(item.price)}</div>
       <div className="justify-self-center">{item.quantity}</div>
       <div className="justify-self-end font-semibold">
-        ${(item.price * item.quantity).toFixed(2)}
+        {formatPrice(Number((item.price * item.quantity).toFixed(2)))}
       </div>
     </div>
   );

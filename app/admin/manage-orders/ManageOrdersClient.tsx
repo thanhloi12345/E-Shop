@@ -17,6 +17,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import moment from "moment";
+import ConvertToUSD from "@/app/utils/ConvertToUSD";
 
 interface ManageOrdersClientProps {
   orders: ExtendedOrders[];
@@ -34,7 +35,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       return {
         id: order.id,
         customer: order.user.name,
-        amount: formatPrice(order.amount / 100),
+        amount: formatPrice(Number(ConvertToUSD(order.amount, "USD", "VND"))),
         paymentStatus: order.status,
         deliveryStatus: order.deliveryStatus,
         date: moment(order.createDate).fromNow(),
