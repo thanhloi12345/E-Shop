@@ -34,7 +34,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       return {
         id: order.id,
         customer: order.user.name,
-        amount: formatPrice(order.amount),
+        amount: formatPrice(order.amount / 100),
         paymentStatus: order.status,
         deliveryStatus: order.deliveryStatus,
         date: moment(order.createDate).fromNow(),
@@ -47,7 +47,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
     { field: "customer", headerName: "Customer Name", width: 130 },
     {
       field: "amount",
-      headerName: "Amount(USD)",
+      headerName: "Amount(VND)",
       width: 100,
       renderCell: (params) => {
         return (

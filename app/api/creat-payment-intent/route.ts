@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { CartProductType } from "@/app/product/[productId]/ProductDetails";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import convertCurrency from "@/app/utils/ConvertToUSD";
+import { Console } from "console";
 
 const stripe = new Stripe(process.env.SRIPE_SECRET_KEY as string, {
   apiVersion: "2023-10-16",
@@ -14,7 +15,9 @@ const calcuteOrderAmount = async (items: CartProductType[]) => {
     const itemTotal = item.price * item.quantity;
     return acc + itemTotal;
   }, 0);
-  const usd = Number(await convertCurrency(totalPrice, "VND", "USD"));
+  const usd = Math.ceil(
+    Number(await convertCurrency(totalPrice, "VND", "USD")) * 100
+  );
   return usd;
 };
 
@@ -26,6 +29,7 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const { items, payment_intent_id } = body;
   const total = await calcuteOrderAmount(items);
+  console.log(total);
   const orderData = {
     user: { connect: { id: currentUser.id } },
     amount: total,
